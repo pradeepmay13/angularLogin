@@ -37,15 +37,26 @@ export class AuthService {
     	this.isUserLoggedIn = false;
     }
   }
-  getUserData(){
-	let username
- 	username = this.loggedInUser.userName;
- 	return username;
+  logout(token) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post('http://localhost/slim/public/logout', JSON.stringify(token), { headers: headers })
+    .map((response: Response) => response.json())
+    .catch((error: any) => Observable.throw(error || {message: "Server Error"}));
   }
   userLogout(){
-  	localStorage.clear();
-  	this.isUserLoggedIn = false;
-  	this.router.navigate(['./login']);
+  	const data = JSON.parse(localStorage.getItem('userData')); 
+  	this.logout(data.token)
+	  .subscribe(
+	    response=>{
+	      if (response.execution === true ) {    
+	        localStorage.clear();
+  			this.isUserLoggedIn = false;
+  			this.router.navigate(['./login']);
+	      }
+	    }
+	  )
+  	
   }
   getUser(token) {
     const headers = new Headers();
