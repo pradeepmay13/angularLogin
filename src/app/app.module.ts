@@ -8,6 +8,7 @@ import { RoutingModule } from './routing/routing.module';
 import { routingComponent } from './routing/routing.module';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { AuthService } from './services/auth.service';
     HttpModule,
     NgbModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
