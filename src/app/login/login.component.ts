@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 	userForm: FormGroup;
-	responseData:any;
+	responseData: any;
+	errorMessage: string ='';
+	successMessage: string ='';
 	constructor(private fb: FormBuilder, private authService:AuthService, private router: Router) { }
 
 	ngOnInit() {
@@ -32,16 +34,24 @@ export class LoginComponent implements OnInit {
 	          this.authService.userDetail();
 	          this.router.navigate(['./home']);
 	        } else {
+	        	this.errorMsgTimeout(this.responseData.data.message, 3000);
 	        }
 	      }
 	    )  
+	}
+	// This method is used to set timeout on the error message box.
+	errorMsgTimeout(message: string, time: number) {
+		this.errorMessage = message;
+		setTimeout(() => {
+		  this.errorMessage = '';
+		}, time);
+	}
 
-		/*if(this.userForm.value){
-			localStorage.setItem("userData",JSON.stringify(this.userForm.value));
-			this.authService.loadUserInfo();
-		}
-		else{
-			localStorage.clear();
-		}*/
+	// This method is used to set timeout on the succes message box.
+	successMsgTimeout(message: string, time: number) {
+		this.successMessage = message;
+		setTimeout(() => {
+		  this.successMessage = '';
+		}, time);
 	}
 }
