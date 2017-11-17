@@ -9,6 +9,7 @@ import { routingComponent } from './routing/routing.module';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading'
 
 
 @NgModule({
@@ -24,7 +25,15 @@ import { AuthGuard } from './auth.guard';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    LoadingModule.forRoot({
+        animationType: ANIMATION_TYPES.threeBounce,
+        backdropBackgroundColour: 'rgba(0,0,0,0.4)', 
+        backdropBorderRadius: '4px',
+        primaryColour: '#007bff', 
+        secondaryColour: '#00FF00', 
+        tertiaryColour: '#FF0000'
+    })
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

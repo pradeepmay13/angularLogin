@@ -13,17 +13,22 @@ export class LoginComponent implements OnInit {
 	responseData: any;
 	errorMessage: string ='';
 	successMessage: string ='';
+	public loadingLoader = false;
 	constructor(private fb: FormBuilder, private authService:AuthService, private router: Router) { }
 
 	ngOnInit() {
+		this.authService.loadUserInfo();
+		if(this.authService.isUserLoggedIn===true){
+			this.router.navigate(['./home']);
+		}
 		this.userForm = this.fb.group({
 			username: ['', Validators.required],
 			userpassword: ['', Validators.required]
 		})
 	}
 	formSubmit(){
+		this.loadingLoader = true;
 		let frmData=this.userForm.value;
-
 		this.authService.login(frmData)
 	    .subscribe(
 	      response => {
@@ -32,9 +37,11 @@ export class LoginComponent implements OnInit {
 	          localStorage.setItem('userData', JSON.stringify(this.responseData));
 	          this.authService.loadUserInfo();
 	          this.authService.userDetail();
+
 	          this.router.navigate(['./home']);
 	        } else {
 	        	this.errorMsgTimeout(this.responseData.data.message, 3000);
+	        	//this.loadingLoader = false;
 	        }
 	      }
 	    )  

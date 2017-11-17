@@ -11,6 +11,8 @@ declare var window: any;
 
 @Injectable()
 export class AuthService {
+  loggedInredirect:string='/home';
+  loggedOffredirect:string='/login';
   loggedInUser: any;
   isUserLoggedIn: boolean = false;
   userDetailDataX:any;
