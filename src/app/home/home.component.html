@@ -2,9 +2,10 @@
 	<h2>Recruitment Form</h2>
 	<div class="row">
 	<form [formGroup]="homeForm" (ngSubmit)="homeForm.valid && saveForm()">
+
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">Email address</label>
-	    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
+	    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
 	    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 	  </div>
 	  <div class="form-group">
@@ -20,11 +21,11 @@
 	  <div class="form-group">
 	    <label for="exampleSelect2">Example multiple select</label>
 	    <select multiple class="form-control" id="exampleSelect2" formControlName="exampleSelect2">
-	      <option>1</option>
-	      <option>2</option>
-	      <option>3</option>
-	      <option>4</option>
-	      <option>5</option>
+	      <option value="1">1</option>
+	      <option value="2">2</option>
+	      <option value="3">3</option>
+	      <option value="4">4</option>
+	      <option value="5">5</option>
 	    </select>
 	  </div>
 	  <div class="form-group">
@@ -33,7 +34,7 @@
 	  </div>
 	  <div class="form-group" formGroupName="fileUpload">
 	    <label for="exampleInputFile">File input</label>
-	    <input type="file" class="form-control-file" id="exampleInputFile" #fileInput aria-describedby="fileHelp"  formControlName="exampleInputFile">
+	    <input type="file" #fileInput id="fileInput" placeholder="Upload file..." aria-describedby="fileHelp" (change)="onSelectFiles($event)" multiple >
 	    <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
 	  </div>
 	  <fieldset class="form-group">
@@ -58,6 +59,7 @@
 	    </label>
 	  </div>
 	  <button type="submit" class="btn btn-primary" [disabled]="!homeForm.valid">Submit</button>
+	  <button type="submit" class="btn btn-primary" (click)="fileReset()">Reset File</button>
 	  <p>Form value: <b> {{ homeForm.value | json }} </b></p>
 	</form>
 </div>

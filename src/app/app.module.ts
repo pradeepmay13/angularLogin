@@ -8,16 +8,16 @@ import { RoutingModule } from './routing/routing.module';
 import { routingComponent } from './routing/routing.module';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
+import { FormService } from './services/form.service';
 import { AuthGuard } from './auth.guard';
-import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading'
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponent,
-    HeaderComponent,   
-    
+    HeaderComponent,    
   ],
   imports: [
     BrowserModule,
@@ -35,7 +35,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading'
         tertiaryColour: '#FF0000'
     })
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, FormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
