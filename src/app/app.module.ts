@@ -17,7 +17,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
   declarations: [
     AppComponent,
     routingComponent,
-    HeaderComponent,    
+    HeaderComponent,   
   ],
   imports: [
     BrowserModule,

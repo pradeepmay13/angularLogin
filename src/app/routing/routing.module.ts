@@ -6,13 +6,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
 import { PagenotfoundComponent } from '../pagenotfound/pagenotfound.component';
-import { FileuploadComponent } from '../fileupload/fileupload.component'
+import { FileuploadComponent } from '../fileupload/fileupload.component';
+import { PrimeNgComponent } from '../prime-ng/prime-ng.component';
+
 
 const routes:Routes=[
 	{ path: '', redirectTo: 'login',pathMatch: 'full' },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'fileUpload', component: FileuploadComponent, canActivate: [AuthGuard] },
+  { path: 'primeNg', component: PrimeNgComponent, canActivate: [AuthGuard] },
 	{ path: '**', redirectTo: '/' },
 	{ path:'**', component: PagenotfoundComponent }
 ]
@@ -34,5 +37,6 @@ export const routingComponent=[
 	LoginComponent, 
 	HomeComponent,
 	PagenotfoundComponent,
-  FileuploadComponent
+  FileuploadComponent,
+  PrimeNgComponent
 ]

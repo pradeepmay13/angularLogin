@@ -15,8 +15,8 @@ export class FormService {
 	upload(formData) {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		return this.http.post('http://localhost/slim/public/uploadForm', JSON.stringify(formData), { headers: headers })
-		.map((response: Response) => response.json())
+		return this.http.post('http://localhost/slim/public/uploadForm', formData)
+		.map((response: Response) => response)
 		.catch((error: any) => Observable.throw(error || {message: "Server Error"}));
 	}
 }
