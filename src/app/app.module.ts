@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
 import { FormService } from './services/form.service';
 import { AuthGuard } from './auth.guard';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
   imports: [
     BrowserModule,
     RoutingModule,
+    FileUploaderModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

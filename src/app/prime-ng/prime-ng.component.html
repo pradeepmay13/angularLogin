@@ -1,3 +1,8 @@
 <p>
   prime-ng works!
+
+  https://www.npmjs.com/package/ng4-file-upload
 </p>
+
+<file-uploader [maxSizeInKb]="1410" [allowMultiple]="false" [fileType]="'application/*'" 
+(onSelection)="fileuploaderFileChange($event)"  [required]="false"></file-uploader>
