@@ -19,4 +19,11 @@ export class FormService {
 		.map((response: Response) => response)
 		.catch((error: any) => Observable.throw(error || {message: "Server Error"}));
 	}
+	uploadNew(formData) {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		return this.http.post('http://localhost/slim/public/uploadFormPNG', formData, {headers:headers})
+		.map((response: Response) => response)
+		.catch((error: any) => Observable.throw(error || {message: "Server Error"}));
+	}
 }

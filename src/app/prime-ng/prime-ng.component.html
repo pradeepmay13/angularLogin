@@ -4,5 +4,46 @@
   https://www.npmjs.com/package/ng4-file-upload
 </p>
 
-<file-uploader [maxSizeInKb]="1410" [allowMultiple]="false" [fileType]="'application/*'" 
-(onSelection)="fileuploaderFileChange($event)"  [required]="false"></file-uploader>
+<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="alterEgo">Email</label>
+        <input class="form-control" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+" [(ngModel)]="model.email" name="email"#email="ngModel"/>
+        <div *ngIf="(email.touched || email.dirty) && email.errors" class="alert alert-danger">
+        	<span *ngIf="email.errors?.required">Email is required.</span>
+	        <span *ngIf="email.errors?.pattern">Email format is invalid</span>
+        </div>       
+      </div>
+
+      <div class="form-group">
+        <label for="power">Hero Power</label>
+        <select class="form-control" id="power" required [(ngModel)]="model.power" name="power" #power="ngModel">
+        	<option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+        </select>
+        <div [hidden]="power.valid || power.pristine" class="alert alert-danger">Power is required</div>
+      </div>
+      <div class="form-group">
+        <label for="power">Upload File</label><br>
+      	<input type="file" name="uploadFile" id="uploadFile" #uploadFile="ngModel" required [(ngModel)]="model.uploadFile">
+      	<div [hidden]="uploadFile.valid || uploadFile.pristine" class="alert alert-danger">File is required</div>
+  	  </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+      <i>with</i> reset
+
+      &nbsp;&nbsp;
+      <button type="button" class="btn btn-default" (click)="newHero()">New Hero</button>
+      <i>without</i> reset
+
+     <!-- NOT SHOWN IN DOCS -->
+      <div>
+        <hr>{{diagnostic}}
+        <!--Name via form.controls = {{showFormControls(heroForm)}}-->
+      </div>
+     <!-- - -->
+    </form>
