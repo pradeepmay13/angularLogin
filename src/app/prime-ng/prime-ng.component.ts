@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { FormService } from '../services/form.service';
+import { MasterDataService } from '../services/master-data.service';
 import { Hero }    from '../properties/hero';
 
 @Component({
@@ -9,15 +10,30 @@ import { Hero }    from '../properties/hero';
   styleUrls: ['./prime-ng.component.css']
 })
 export class PrimeNgComponent implements OnInit {
-	constructor(private formService:FormService) { }
+
+	countries:any;
+	states:any;
+	powers:any;
+	model={
+		name:'',
+		email:'',
+		power:'',
+		country:'',
+		state:'',
+		uploadFile:'',
+	};
+	constructor(private formService:FormService, public masterdataService :MasterDataService) { }
 
 	ngOnInit() {
+		this.countries=this.masterdataService.getCountries();
+		this.powers=this.masterdataService.getPowers();
 	}
+	changeCountryState(country){
+		this.states=this.masterdataService.getStates().filter(statesVal=>statesVal.cid===country)
+	}
+	
 
-	powers = ['Really Smart', 'Super Flexible',
-            'Super Hot', 'Weather Changer'];
-
-	model = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
+	//model = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
 
   	submitted = false;
 
@@ -26,10 +42,9 @@ export class PrimeNgComponent implements OnInit {
   	// TODO: Remove this when we're done
   	get diagnostic() { return JSON.stringify(this.model); }
 
-  	newHero() {
-    	this.model = new Hero(42, '', '');
+  	saveForm(){
+  		console.log(this.model);
   	}
-
 	//////// NOT SHOWN IN DOCS ////////
 
 	// Reveal in html:

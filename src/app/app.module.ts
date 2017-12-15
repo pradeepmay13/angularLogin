@@ -9,6 +9,7 @@ import { routingComponent } from './routing/routing.module';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 import { FormService } from './services/form.service';
+import { MasterDataService } from './services/master-data.service';
 import { AuthGuard } from './auth.guard';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
@@ -37,7 +38,7 @@ import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
         tertiaryColour: '#FF0000'
     })
   ],
-  providers: [AuthService, AuthGuard, FormService],
+  providers: [AuthService, AuthGuard, FormService, MasterDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
