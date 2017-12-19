@@ -19,7 +19,7 @@ import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
   declarations: [
     AppComponent,
     routingComponent,
-    HeaderComponent,   
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

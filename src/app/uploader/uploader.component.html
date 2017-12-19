@@ -1,0 +1,12 @@
+<h3>
+  Uploader works!
+</h3>
+<div class="text-center">
+	<form #heroForm="ngForm">
+  <label class="btn btn-primary">Upload Images
+  	<input type="file" #fileInput id="fileInput" hidden (change)="uploadFile($event)">
+  </label>
+  <input type="text" name="name" class="form-control col-3 form-inline" [(ngModel)]="model.name">
+  <button class="btn btn-success" (click)=saveData()>Save</button>
+  </form>
+</div>
