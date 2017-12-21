@@ -8,7 +8,7 @@ import { FormService } from '../services/form.service';
   styleUrls: ['./uploader.component.css']
 })
 export class UploaderComponent implements OnInit {
-
+	public loadingLoader = false;
 	model:any={
 		name:'',
 	};
@@ -50,6 +50,7 @@ export class UploaderComponent implements OnInit {
   	}
    }
   saveData(){
+  	this.loadingLoader = true;
   	let fileBrowser = this.fileInput.nativeElement.files[0];
   	let formData=new FormData();
 	formData.append('file', fileBrowser);
@@ -57,8 +58,10 @@ export class UploaderComponent implements OnInit {
   	this.http.post('http://localhost/slim/upload.php', formData)
   	.subscribe((data)=>{
   		console.log('Got Data', data);
+  		this.loadingLoader = false;
   	},(error)=>{
   		console.log('Getting error', error);
+  		this.loadingLoader = false;
   	})
 
   }

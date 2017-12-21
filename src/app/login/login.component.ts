@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 	          this.router.navigate(['./home']);
 	        } else {
 	        	this.errorMsgTimeout(this.responseData.data.message, 3000);
-	        	//this.loadingLoader = false;
+	        	this.loadingLoader = false;
 	        }
 	      }
 	    )  
