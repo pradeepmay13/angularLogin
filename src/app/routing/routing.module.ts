@@ -9,6 +9,7 @@ import { PagenotfoundComponent } from '../pagenotfound/pagenotfound.component';
 import { FileuploadComponent } from '../fileupload/fileupload.component';
 import { PrimeNgComponent } from '../prime-ng/prime-ng.component';
 import { UploaderComponent } from '../uploader/uploader.component';
+import { ListComponent } from '../list/list.component';
 
 
 const routes:Routes=[
@@ -16,6 +17,7 @@ const routes:Routes=[
 	{ path: 'login', component: LoginComponent },
 	{ path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'fileUpload', component: FileuploadComponent, canActivate: [AuthGuard] },
+  { path: 'dataList', component: ListComponent, canActivate: [AuthGuard] },
   { path: 'primeNg', component: PrimeNgComponent, canActivate: [AuthGuard] },
   { path: 'uploader', component: UploaderComponent, canActivate: [AuthGuard] },
 	{ path: '**', redirectTo: '/' },
@@ -41,5 +43,6 @@ export const routingComponent=[
 	PagenotfoundComponent,
   FileuploadComponent,
   PrimeNgComponent,
-  UploaderComponent
+  UploaderComponent,
+  ListComponent
 ]

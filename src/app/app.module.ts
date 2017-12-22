@@ -13,6 +13,7 @@ import { MasterDataService } from './services/master-data.service';
 import { AuthGuard } from './auth.guard';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
+import { CategoryPipe } from './pipes/category.pipe';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
     AppComponent,
     routingComponent,
     HeaderComponent,
+    CategoryPipe,
   ],
   imports: [
     BrowserModule,
