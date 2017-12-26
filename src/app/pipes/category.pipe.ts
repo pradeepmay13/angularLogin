@@ -5,7 +5,9 @@ export class CategoryPipe implements PipeTransform {
     if(searchText == null) return categories;
 
     return categories.filter(function(category){
-      return category.CategoryName.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+      
+      return (category.CategoryName.toLowerCase().indexOf(searchText.toLowerCase()) > -1 || category.Description.toLowerCase().indexOf(searchText.toLowerCase()) > -1)
+      	
     })
   }
 }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryPipe } from '../pipes/category.pipe';
+//import { CategoryPipe } from '../pipes/category.pipe';
+import { OrderbyPipe } from '../pipes/orderby.pipe';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  styleUrls: ['./list.component.css'], 
+  providers:[OrderbyPipe]
 })
 export class ListComponent implements OnInit {
   

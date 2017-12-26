@@ -14,6 +14,7 @@ import { AuthGuard } from './auth.guard';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
 import { CategoryPipe } from './pipes/category.pipe';
+import { OrderbyPipe } from './pipes/orderby.pipe';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { CategoryPipe } from './pipes/category.pipe';
     routingComponent,
     HeaderComponent,
     CategoryPipe,
+    OrderbyPipe,
   ],
   imports: [
     BrowserModule,
