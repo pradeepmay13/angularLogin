@@ -10,6 +10,7 @@ import { FileuploadComponent } from '../fileupload/fileupload.component';
 import { PrimeNgComponent } from '../prime-ng/prime-ng.component';
 import { UploaderComponent } from '../uploader/uploader.component';
 import { ListComponent } from '../list/list.component';
+import { InterceptexampleComponent } from '../interceptexample/interceptexample.component';
 
 
 const routes:Routes=[
@@ -20,6 +21,7 @@ const routes:Routes=[
   { path: 'dataList', component: ListComponent, canActivate: [AuthGuard] },
   { path: 'primeNg', component: PrimeNgComponent, canActivate: [AuthGuard] },
   { path: 'uploader', component: UploaderComponent, canActivate: [AuthGuard] },
+  { path: 'InterceptExample', component: InterceptexampleComponent, canActivate: [AuthGuard] },
 	{ path: '**', redirectTo: '/' },
 	{ path:'**', component: PagenotfoundComponent }
 ]
@@ -44,5 +46,6 @@ export const routingComponent=[
   FileuploadComponent,
   PrimeNgComponent,
   UploaderComponent,
-  ListComponent
+  ListComponent,
+  InterceptexampleComponent
 ]
