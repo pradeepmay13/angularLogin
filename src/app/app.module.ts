@@ -15,8 +15,9 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
 import { CategoryPipe } from './pipes/category.pipe';
 import { OrderbyPipe } from './pipes/orderby.pipe';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-//import { MyHttpInterceptor } from './interceptors/myhttp';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { GithubAuthInterceptor } from './interceptors/githubauth.interceptor';
 
 
 @NgModule({
@@ -45,12 +46,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
         tertiaryColour: '#FF0000'
     })
   ],
-  providers: [AuthService, AuthGuard, FormService, MasterDataService
-    //{ 
-     // provide: HTTP_INTERCEPTORS, 
-     // useClass: MyHttpInterceptor, 
-     // multi: true 
-    //}
+  providers: [AuthService, AuthGuard, FormService, MasterDataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GithubAuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

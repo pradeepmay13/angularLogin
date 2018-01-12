@@ -1,37 +1,21 @@
-import { Injectable, Injector } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/observable/throw'
-import 'rxjs/add/operator/catch';
-
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class MyHttpInterceptor implements HttpInterceptor {
-	constructor() { }
+export class JwtInterceptor implements HttpInterceptor {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        // add authorization header with jwt token if available
+        let currentUser = JSON.parse(localStorage.getItem('userData'));
+        if (currentUser && currentUser.token) {
+            request = request.clone({
+                setHeaders: { 
+                    Authorization: `Bearer ${currentUser.token}`
+                }
+            });
+        }
 
-	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-	console.log("intercepted request ... ");
-
-	// Clone the request to add the new header.
-	const data = JSON.parse(localStorage.getItem('userData'));
-        const authReq = req.clone(
-            {
-                headers: req.headers.set("Authorization", data.token)
-            }
-        );
-
-        console.log("Sending request with new header now ...");
-
-        //send the newly created request
-        return next.handle(authReq)
-            .catch((error, caught) => {
-                //intercept the respons error and displace it to the console 
-                console.log("Error Occurred");
-                console.log(error);
-                //return the error to the method that called it
-                return Observable.throw(error);
-            }) as any;
+        return next.handle(request);
     }
 }
 
