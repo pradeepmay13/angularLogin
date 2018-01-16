@@ -1,45 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UserResponse } from './userresponse.type';
+import { Subscription } from 'rxjs/Subscription';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-interceptexample',
   templateUrl: './interceptexample.component.html',
   styleUrls: ['./interceptexample.component.css']
 })
-export class InterceptexampleComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+export class InterceptexampleComponent implements OnInit {
+  message:any;
+  subscription:Subscription;
+  constructor(private http: HttpClient, private sharedService:SharedService) { 
+  	
+  }
+  sendMessage():void{
+  	this.sharedService.sendMessage('Hi this is send message');
+  }
+  clearMessage():void{
+  	this.sharedService.clearMessage()
+  }
 
   ngOnInit() {
-  	/*this.http.get<UserResponse>('https://api.github.com/users/seeschweiler').subscribe(
-      data => {
-        console.log("User Login: " + data.login);
-        console.log("Bio: " + data.bio);
-        console.log("Company: " + data.company);
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log("Client-side error occured.");
-        } else {
-          console.log("Server-side error occured.");
-        }
-      }
-    );*/
-
-    const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
-      title: 'foo',
-      body: 'bar',
-      userId: 1
-    })
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log("Error occured");
-        }
-      );
+  	
   }
   method1Call(){
   	let username: string; 
@@ -77,3 +62,32 @@ export class InterceptexampleComponent implements OnInit {
   }
 
 }
+
+/*this.http.get<UserResponse>('https://api.github.com/users/seeschweiler').subscribe(
+      data => {
+        console.log("User Login: " + data.login);
+        console.log("Bio: " + data.bio);
+        console.log("Company: " + data.company);
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log("Client-side error occured.");
+        } else {
+          console.log("Server-side error occured.");
+        }
+      }
+    );
+
+    const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    })
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log("Error occured");
+        }
+      );*/

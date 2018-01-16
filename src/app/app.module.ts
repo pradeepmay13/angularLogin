@@ -18,6 +18,7 @@ import { OrderbyPipe } from './pipes/orderby.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GithubAuthInterceptor } from './interceptors/githubauth.interceptor';
+import { SharedService } from './services/shared.service';
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import { GithubAuthInterceptor } from './interceptors/githubauth.interceptor';
         tertiaryColour: '#FF0000'
     })
   ],
-  providers: [AuthService, AuthGuard, FormService, MasterDataService,
+  providers: [AuthService, AuthGuard, FormService, MasterDataService, SharedService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GithubAuthInterceptor,

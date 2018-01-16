@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { SharedService } from './services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  message:any;
+  subscription:Subscription;
+  constructor(private sharedService:SharedService) { 
+  	this.subscription=this.sharedService.getMessage().subscribe(message=>{this.message=message;});
+  }
 }
