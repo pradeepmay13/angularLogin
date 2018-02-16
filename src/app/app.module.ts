@@ -12,13 +12,16 @@ import { FormService } from './services/form.service';
 import { MasterDataService } from './services/master-data.service';
 import { AuthGuard } from './auth.guard';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
-import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
+//import { FileUploaderModule } from "ng4-file-upload/file-uploader.module";
 import { CategoryPipe } from './pipes/category.pipe';
 import { OrderbyPipe } from './pipes/orderby.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GithubAuthInterceptor } from './interceptors/githubauth.interceptor';
 import { SharedService } from './services/shared.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter'; 
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination'; 
 
 
 @NgModule({
@@ -27,17 +30,20 @@ import { SharedService } from './services/shared.service';
     routingComponent,
     HeaderComponent,
     CategoryPipe,
-    OrderbyPipe,
+    OrderbyPipe
   ],
   imports: [
     BrowserModule,
     RoutingModule,
-    FileUploaderModule,
+    //FileUploaderModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
     NgbModule.forRoot(),
+    Ng2SearchPipeModule, //including into imports
+    Ng2OrderModule, // importing the sorting package here
+    NgxPaginationModule,
     LoadingModule.forRoot({
         animationType: ANIMATION_TYPES.threeBounce,
         backdropBackgroundColour: 'rgba(0,0,0,0.4)', 
@@ -47,7 +53,7 @@ import { SharedService } from './services/shared.service';
         tertiaryColour: '#FF0000'
     })
   ],
-  providers: [AuthService, AuthGuard, FormService, MasterDataService, SharedService,
+  providers: [AuthService, AuthGuard, FormService, MasterDataService, SharedService, 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GithubAuthInterceptor,

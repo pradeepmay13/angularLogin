@@ -25,8 +25,23 @@
         <a class="nav-link" routerLink="dataList">DataList</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" routerLink="yaTable">yaTable</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" routerLink="InterceptExample">Intercept-Eg</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/yaTable/10/20']" > 
+          Link 1
+        </a>        
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/yaTable', 10, 20]" > 
+          Link2
+        </a>        
+      </li>
+      <!--[queryParams]="{debug: true}"   fragment="education"  fragment is use for #values in URL and query parameter like ?id=10&subId=20 -->
+
 
       
     </ul>
